@@ -1,4 +1,4 @@
-1、myproject通过 django-admin startproject myproject生成
+﻿1、myproject通过 django-admin startproject myproject生成
 2、manage.py 使用django-admin命令行根据快捷键方式。它用于与我们项目相关的管理命令。我们将使用它来运行开发服务器，运行测试，创建迁移等。
 3、__init.py：这个空文件告诉python这个文件夹是一个python包。
 4、settings.py：这个文件包含了所有的项目配置。将来我们会一直提到这个文件！
@@ -23,7 +23,7 @@ IndentationError: expected an indented block//缩进问题
 命令：django-admin startapp accounts
 myproject中生成了一个文件夹accouts
 mm:y1234567
-8：django版本较高不能识别出path里的正则表达式 需改成re_path才可以识别正则表达式
+8：django版本较高不能识别出path（字符串）里的正则表达式 需改成re_path才可以识别正则表达式
 9、相关网址 “List of Useful URL Patterns”https://simpleisbetterthancomplex.com/references/2016/10/10/url-patterns.html
 10、单元测试文件，在运用测试文件的时候，会单独创建一个数据库来模拟，比如你在测试文件中添加一个数据，在测试结束后，该数据会被销毁
 python manage.py test
