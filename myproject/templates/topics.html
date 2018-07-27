@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ board.name }} - {{ block.super }}
+{% endblock %}
+
+{% block breadcrumb %}
+<li class="breadcrumb-item"><a href="{% url 'home' %}">Boards</a></li>
+<li class="breadcrumb-item active">{{ board.name }}</li>
+{% endblock %}
+
+{% block content %}
+ <div class="mb-4">
+    <a href="{% url 'new_topic' board.pk %}" class="btn btn-primary">New topic</a>
+  </div>
+  <table class="table">
+    <thead class="thead-inverse">
+      <tr>
+        <th>Topic</th>
+        <th>Starter</th>
+        <th>Replies</th>
+        <th>Views</th>
+        <th>Last Update</th>
+      </tr>
+    </thead>
+    <tbody>
+    <!--这里用board.topics.all而不是board.topics的原因是
+       board.topics是一个相关管理器，和模型管理非常相似，通常可以在board.objects属性中找到
+       所以，为了能够放回所有与board上相关的topics我们使用board.topics.all()
+       为了过滤出一些数据，我们可以使用board.topics.filter(subject_contains='Hello')
+       因为all()是一个方法，所以当我们使用Django模板语言来编写代码的时候，在HTML模板文件中我们不写括号
+    -->
+       {% for topic in topics %}
+        <tr>
+          <td><a href="{% url 'topic_posts' board.pk topic.pk %}">{{ topic.subject }}</a></td>
+          <td>{{ topic.starter.username }}</td>
+          <td>{{ topic.replies }}</td>
+          <td>{{ topic.views }}</td>
+          <td>{{ topic.last_updated }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

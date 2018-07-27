@@ -1,0 +1,35 @@
+1、myproject通过 django-admin startproject myproject生成
+2、manage.py 使用django-admin命令行根据快捷键方式。它用于与我们项目相关的管理命令。我们将使用它来运行开发服务器，运行测试，创建迁移等。
+3、__init.py：这个空文件告诉python这个文件夹是一个python包。
+4、settings.py：这个文件包含了所有的项目配置。将来我们会一直提到这个文件！
+5、urls.py：这个文件负责映射我们项目中的路由和路径。例如，如果你想在访问URL / about/ 时显示某些内容，则必须先在这里做映射关系。
+6、wsgi.py：该文件是用于部署的简单网关接口。你可以暂且先不用关心它的内容，就先让它在那里就好了。
+6、django自带了一个简单的网络服务器。在开发过程中非常方便，所以我们无需安装任何其他软件即可在本地运行项目。我们可以通过执行命令来测试一下它：
+   python manage.py runserver
+   python manage.py makemigrations//运行models.py里的创建数据库语句，并生成迁移文件boards\migrations\0001_initial.py
+   python manage.py sqlmigrate boards 0001//翻译成数据库语言
+   python manage.py migrate//将生成的迁移文件应用到数据库
+   python manage.py flush//清除数据库
+   python manage.py shell//启动Python shell
+
+
+IndentationError: expected an indented block//缩进问题
+
+7.路由语法
+一个项目可以有很多 urls.py 分布在应用中。Django 需要一个 url.py 去作为起点。
+这个特别的 urls.py 叫做 root URLconf。它被定义在 settings.py 中。 ROOT_URLCONF = 'myproject.urls'
+
+为了管理所有的信息，我们应该创建一个新的应用功能。在这个项目的manage.py所在的文件夹下运行该命令创建一个新的app
+命令：django-admin startapp accounts
+myproject中生成了一个文件夹accouts
+mm:y1234567
+8：django版本较高不能识别出path里的正则表达式 需改成re_path才可以识别正则表达式
+9、相关网址 “List of Useful URL Patterns”https://simpleisbetterthancomplex.com/references/2016/10/10/url-patterns.html
+10、单元测试文件，在运用测试文件的时候，会单独创建一个数据库来模拟，比如你在测试文件中添加一个数据，在测试结束后，该数据会被销毁
+python manage.py test
+11、python manage.py runserver 0.0.0.0:8000
+在setting.py的ALLOWED_HOSTS = []里加上'*'
+即可在本地的另一台计算机上访问该网址
+比如，本机网址为192.168.2.10，在另一台计算机上输入192.168.2.10:8000
+12.在url.py中的include()函数可以引用其他的本地路由文件
+from django.urls import include
